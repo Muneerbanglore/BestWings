@@ -1,0 +1,54 @@
+---
+// Cta.astro
+---
+
+<section class="py-20 bg-white">
+  <div class="max-w-7xl mx-auto px-6">
+    
+    <!-- CTA Banner Card -->
+    <div class="bg-brand-navy text-white p-10 md:p-14 shadow-2xl rounded-tl-[3.5rem] rounded-br-[3.5rem] rounded-tr-xl rounded-bl-xl border border-white/5 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative overflow-hidden" id="cta-card">
+      
+      <!-- Left Column: Content & Badges -->
+      <div class="lg:col-span-8 flex flex-col gap-6 relative z-10">
+        <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight text-white leading-tight">
+          Ready to Start Your Journey?
+        </h2>
+        <p class="text-sm text-slate-350 leading-relaxed max-w-xl font-medium">
+          The most prestigious business address in the world is waiting for you. Take the first step today with our risk-free assessment.
+        </p>
+
+        <!-- Trust Badges -->
+        <div class="flex flex-wrap gap-4 mt-2">
+          <!-- Badge 1: 100% Secure -->
+          <div class="inline-flex items-center gap-2 bg-white/5 border border-white/10 px-4 py-2 rounded-lg backdrop-blur-sm text-xs font-bold uppercase tracking-widest text-slate-300">
+            <svg class="w-4 h-4 text-brand-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+            </svg>
+            100% Secure
+          </div>
+
+          <!-- Badge 2: Protected Process -->
+          <div class="inline-flex items-center gap-2 bg-white/5 border border-white/10 px-4 py-2 rounded-lg backdrop-blur-sm text-xs font-bold uppercase tracking-widest text-slate-300">
+            <svg class="w-4 h-4 text-brand-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 12l2 2 4-4M9 5l.707-.707a1 1 0 00-1.414 0L9 5zm0 0l-.707-.707a1 1 0 000 1.414L9 5zm0 0v10" />
+            </svg>
+            Protected Process
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: CTA Button -->
+      <div class="lg:col-span-4 flex justify-start lg:justify-end relative z-10">
+        <a 
+          href="#inquiry" 
+          class="bg-white text-brand-navy hover:bg-[#dbeafe] active:scale-[0.98] text-xs font-black tracking-widest px-8 py-5 rounded transition-all duration-300 ease-in-out uppercase text-center w-full sm:w-auto"
+          id="btn-request-briefing"
+        >
+          Request Strategy Briefing
+        </a>
+      </div>
+
+    </div>
+
+  </div>
+</section>

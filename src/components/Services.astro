@@ -1,0 +1,106 @@
+---
+// Services.astro
+const services = [
+  {
+    title: "Mainland Formation",
+    description: "Complete freedom to trade across the UAE and globally with 100% ownership and zero restrictions.",
+    image: "/images/service_mainland.png",
+    link: "#inquiry",
+    id: "service-mainland"
+  },
+  {
+    title: "Free Zone Setup",
+    description: "Tax-efficient jurisdictions tailored for specific industries and startups, offering full repatriation of profits.",
+    image: "/images/service_freezone.png",
+    link: "#inquiry",
+    id: "service-freezone"
+  },
+  {
+    title: "Visa Services",
+    description: "Investor, family, and employee visas handled with absolute efficiency and full compliance with UAE laws.",
+    image: "/images/service_visa.png",
+    link: "#inquiry",
+    id: "service-visa"
+  },
+  {
+    title: "Bank Account",
+    description: "Strategic partnerships for rapid corporate and personal bank account opening with premium local banks.",
+    image: "/images/service_bank.png",
+    link: "#inquiry",
+    id: "service-bank"
+  },
+  {
+    title: "PRO Services",
+    description: "End-to-end government liaison, license renewals, and legal documentation support to keep your business running.",
+    image: "/images/service_pro.png",
+    link: "#inquiry",
+    id: "service-pro"
+  },
+  {
+    title: "Legal Translation",
+    description: "Certified legal translations for all corporate and individual paperwork, officially accepted by all UAE ministries.",
+    image: "/images/service_legal.png",
+    link: "#inquiry",
+    id: "service-legal"
+  }
+];
+---
+
+<section id="services" class="py-24 bg-white">
+  <div class="max-w-7xl mx-auto px-6">
+    
+    <!-- Section Heading -->
+    <div class="text-center mb-16 flex flex-col items-center gap-2">
+      <span class="text-xs font-extrabold tracking-widest text-brand-blue uppercase">
+        Comprehensive Ecosystem
+      </span>
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#09122c] mt-2">
+        World-Class Business Solutions
+      </h2>
+      <div class="w-12 h-[3px] bg-slate-900 mt-4 rounded-full"></div>
+    </div>
+
+    <!-- Cards Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {services.map((service) => (
+        <div 
+          class="group flex flex-col bg-[#f1f5f9]/60 hover:bg-[#e2e8f0]/40 transition-all duration-300 shadow-sm hover:shadow-md border border-slate-100 rounded-t-3xl rounded-br-3xl rounded-bl-[40px] overflow-hidden"
+          id={service.id}
+        >
+          <!-- Top portion: Image -->
+          <div class="h-60 overflow-hidden relative">
+            <img 
+              src={service.image} 
+              alt={service.title} 
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
+            />
+            <div class="absolute inset-0 bg-brand-navy/5 group-hover:bg-transparent transition-all duration-300"></div>
+          </div>
+
+          <!-- Bottom portion: Text -->
+          <div class="p-8 flex flex-col flex-grow justify-between gap-6">
+            <div class="flex flex-col gap-3">
+              <h3 class="text-xl font-bold text-[#09122c] group-hover:text-brand-blue transition-colors duration-200">
+                {service.title}
+              </h3>
+              <p class="text-sm text-slate-500 leading-relaxed">
+                {service.description}
+              </p>
+            </div>
+            
+            <a 
+              href={service.link}
+              class="inline-flex items-center gap-2 text-xs font-black tracking-widest text-slate-900 group-hover:text-brand-blue transition-colors duration-200 uppercase"
+            >
+              Explore Details
+              <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>

@@ -1,0 +1,91 @@
+---
+// Roadmap.astro
+const steps = [
+  {
+    num: "01",
+    title: "Consultation",
+    description: "Free deep-dive into your business model and jurisdictional selection.",
+    icon: `<svg class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" /></svg>`,
+    isHighlight: false
+  },
+  {
+    num: "02",
+    title: "Documentation",
+    description: "We compile and certify all legal paperwork required for the application.",
+    icon: `<svg class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>`,
+    isHighlight: false
+  },
+  {
+    num: "03",
+    title: "Approvals",
+    description: "Coordination with DED and Freezone authorities for final license issuance.",
+    icon: `<svg class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>`,
+    isHighlight: false
+  },
+  {
+    num: "04",
+    title: "Launch",
+    description: "Handover of your trade license, visa processing, and bank account opening.",
+    icon: `<svg class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" /></svg>`,
+    isHighlight: true
+  }
+];
+---
+
+<section class="py-24 bg-white border-t border-slate-100">
+  <div class="max-w-7xl mx-auto px-6">
+    
+    <!-- Header -->
+    <div class="text-center mb-20 flex flex-col items-center gap-2">
+      <span class="text-xs font-extrabold tracking-widest text-brand-blue uppercase">
+        Streamlined Roadmap
+      </span>
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#09122c] mt-2">
+        Simple 4-Step Process
+      </h2>
+      <div class="w-12 h-[3px] bg-slate-900 mt-4 rounded-full"></div>
+    </div>
+
+    <!-- Steps Grid -->
+    <div class="relative w-full grid grid-cols-1 md:grid-cols-4 gap-12" id="roadmap-grid">
+      
+      {steps.map((step, idx) => (
+        <div class="flex flex-col items-center text-center relative gap-6" id={`roadmap-step-${step.num}`}>
+          
+          <!-- Number Watermark behind Icon -->
+          <div class="absolute -top-6 text-7xl font-black text-slate-100/70 select-none z-0">
+            {step.num}
+          </div>
+
+          <!-- Icon Container -->
+          <div class="relative z-10 flex items-center justify-center">
+            <!-- Icon Box -->
+            <div class={`w-14 h-14 rounded-2xl flex items-center justify-center shadow-lg ${
+              step.isHighlight 
+                ? 'bg-black text-white shadow-black/10' 
+                : 'bg-brand-navy text-white shadow-blue-900/10'
+            }`} set:html={step.icon} />
+          </div>
+
+          <!-- Connectors between steps (Desktop only) -->
+          {idx < steps.length - 1 && (
+            <div class="hidden md:block absolute top-7 left-[calc(50%+2.5rem)] right-[calc(-50%+2.5rem)] h-[1px] bg-slate-200 z-0"></div>
+          )}
+
+          <!-- Card Content -->
+          <div class="flex flex-col gap-2 relative z-10 px-4">
+            <h3 class="text-lg font-bold text-[#09122c] font-sans">
+              {step.title}
+            </h3>
+            <p class="text-xs text-slate-500 leading-relaxed font-medium">
+              {step.description}
+            </p>
+          </div>
+
+        </div>
+      ))}
+
+    </div>
+
+  </div>
+</section>

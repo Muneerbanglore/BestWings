@@ -1,0 +1,231 @@
+---
+interface Props {
+  activePage?: 'home' | 'services' | 'pricing';
+}
+
+const { activePage = 'home' } = Astro.props;
+---
+
+<header class="fixed pt-10  top-0 left-0 right-0 z-50 mt-15 transition-all duration-500 bg-transparent border-b border-transparent" id="main-header">
+  <div class="max-w-7xl mx-auto px-6 h-24 flex items-center justify-between transition-all duration-500" id="header-container">
+    
+    <!-- Logo -->
+    <a href="/" class="flex items-center group" id="header-logo">
+      <img src="/images/logo.png" alt="BESTWINGS Logo" class="h-16 sm:h-20 w-auto object-contain transition-all duration-500 rounded-xl" id="logo-img" />
+    </a>
+
+    <!-- Right side: Desktop navigation and CTA -->
+    <div class="hidden md:flex items-center gap-10 h-full">
+      <!-- Navigation Menu -->
+      <nav class="flex items-center gap-8 h-full">
+        <a 
+          href="#home" 
+          class={`nav-link relative text-sm font-semibold tracking-wide transition-colors duration-300 py-2 ${
+            activePage === 'home' 
+              ? 'active text-white font-bold' 
+              : 'text-white/80 hover:text-white'
+          }`}
+          id="nav-home"
+        >
+          Home
+          {activePage === 'home' && (
+            <span class="absolute bottom-0 left-0 right-0 h-[2px] bg-white rounded-full"></span>
+          )}
+        </a>
+        
+        <a 
+          href="#services" 
+          class={`nav-link relative text-sm font-semibold tracking-wide transition-colors duration-300 py-2 ${
+            activePage === 'services' 
+              ? 'active text-white font-bold' 
+              : 'text-white/80 hover:text-white'
+          }`}
+          id="nav-services"
+        >
+          Services
+          {activePage === 'services' && (
+            <span class="absolute bottom-0 left-0 right-0 h-[2px] bg-white rounded-full"></span>
+          )}
+        </a>
+        
+        <a 
+          href="#pricing" 
+          class={`nav-link relative text-sm font-semibold tracking-wide transition-colors duration-300 py-2 ${
+            activePage === 'pricing' 
+              ? 'active text-white font-bold' 
+              : 'text-white/80 hover:text-white'
+          }`}
+          id="nav-pricing"
+        >
+          Pricing
+          {activePage === 'pricing' && (
+            <span class="absolute bottom-0 left-0 right-0 h-[2px] bg-white rounded-full"></span>
+          )}
+        </a>
+      </nav>
+
+      <!-- Call to Action -->
+      <a 
+        href="#inquiry" 
+        class="bg-white text-brand-navy hover:bg-[#dbeafe] active:scale-[0.98] text-xs font-bold tracking-widest px-6 py-3 rounded transition-all duration-300 ease-in-out uppercase"
+        id="header-cta"
+      >
+        Get Started
+      </a>
+    </div>
+
+    <!-- Mobile Menu Button (Mobile only) -->
+    <button 
+      class="md:hidden p-2 text-white hover:text-slate-200 focus:outline-none transition-colors duration-300"
+      aria-label="Toggle menu"
+      id="mobile-menu-toggle"
+    >
+      <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+    </button>
+
+  </div>
+
+  <!-- Mobile Navigation Dropdown -->
+  <div class="hidden md:hidden bg-white border-b border-slate-100 px-6 py-4 transition-all duration-300" id="mobile-menu">
+    <nav class="flex flex-col gap-4">
+      <a href="#home" class="text-sm font-semibold text-slate-900 py-1" id="mobile-nav-home">Home</a>
+      <a href="#services" class="text-sm font-semibold text-slate-500 hover:text-slate-900 py-1" id="mobile-nav-services">Services</a>
+      <a href="#pricing" class="text-sm font-semibold text-slate-500 hover:text-slate-900 py-1" id="mobile-nav-pricing">Pricing</a>
+    </nav>
+  </div>
+</header>
+
+<script>
+  // Mobile menu toggle logic
+  const toggleBtn = document.getElementById('mobile-menu-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  if (toggleBtn && mobileMenu) {
+    toggleBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+  }
+
+  // Sticky scroll handling
+  const header = document.getElementById('main-header');
+  const headerContainer = document.getElementById('header-container');
+  const logoImg = document.getElementById('logo-img');
+  const ctaBtn = document.getElementById('header-cta');
+  const mobToggle = document.getElementById('mobile-menu-toggle');
+  const navLinks = document.querySelectorAll('.nav-link');
+
+  function handleScroll() {
+    if (!header || !headerContainer || !logoImg || !ctaBtn || !mobToggle) return;
+
+    if (window.scrollY > 50) {
+      header.classList.remove('bg-transparent', 'border-transparent');
+      header.classList.add('bg-white/95', 'backdrop-blur-md', 'shadow-sm', 'border-b', 'border-slate-100');
+      
+      headerContainer.classList.remove('h-24');
+      headerContainer.classList.add('h-20');
+      
+      logoImg.classList.remove('h-16', 'sm:h-20');
+      logoImg.classList.add('h-12', 'sm:h-14');
+      
+      ctaBtn.classList.remove('bg-white', 'text-brand-navy', 'hover:bg-[#dbeafe]');
+      ctaBtn.classList.add('bg-black', 'text-white', 'hover:bg-brand-blue');
+      
+      mobToggle.classList.remove('text-white');
+      mobToggle.classList.add('text-slate-700');
+
+      navLinks.forEach(link => {
+        if (!link.classList.contains('active')) {
+          link.classList.remove('text-white/80', 'hover:text-white');
+          link.classList.add('text-slate-500', 'hover:text-slate-900');
+        } else {
+          link.classList.remove('text-white');
+          link.classList.add('text-slate-900');
+          const span = link.querySelector('span');
+          if (span) span.className = 'absolute bottom-0 left-0 right-0 h-[2px] bg-slate-900 rounded-full';
+        }
+      });
+    } else {
+      header.classList.add('bg-transparent', 'border-transparent');
+      header.classList.remove('bg-white/95', 'backdrop-blur-md', 'shadow-sm', 'border-b', 'border-slate-100');
+      
+      headerContainer.classList.add('h-24');
+      headerContainer.classList.remove('h-20');
+      
+      logoImg.classList.add('h-16', 'sm:h-20');
+      logoImg.classList.remove('h-12', 'sm:h-14');
+      
+      ctaBtn.classList.add('bg-white', 'text-brand-navy', 'hover:bg-[#dbeafe]');
+      ctaBtn.classList.remove('bg-black', 'text-white', 'hover:bg-brand-blue');
+      
+      mobToggle.classList.add('text-white');
+      mobToggle.classList.remove('text-slate-700');
+
+      navLinks.forEach(link => {
+        if (!link.classList.contains('active')) {
+          link.classList.add('text-white/80', 'hover:text-white');
+          link.classList.remove('text-slate-500', 'hover:text-slate-900');
+        } else {
+          link.classList.add('text-white');
+          link.classList.remove('text-slate-900');
+          const span = link.querySelector('span');
+          if (span) span.className = 'absolute bottom-0 left-0 right-0 h-[2px] bg-white rounded-full';
+        }
+      });
+    }
+  }
+
+  // Active state highlighting on scroll
+  const sections = document.querySelectorAll('section[id]');
+  const navLinksMap = {
+    home: document.getElementById('nav-home'),
+    services: document.getElementById('nav-services'),
+    pricing: document.getElementById('nav-pricing')
+  };
+
+  function highlightNav() {
+    let scrollY = window.pageYOffset;
+    const isScrolled = window.scrollY > 50;
+
+    sections.forEach(current => {
+      const sectionHeight = (current as HTMLElement).offsetHeight;
+      const sectionTop = (current as HTMLElement).offsetTop - 120;
+      const sectionId = current.getAttribute('id');
+
+      if (sectionId && (sectionId === 'home' || sectionId === 'services' || sectionId === 'pricing')) {
+        const link = navLinksMap[sectionId as 'home' | 'services' | 'pricing'];
+        if (link) {
+          if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+            link.classList.add('active');
+            link.classList.remove('text-slate-500', 'text-white/80');
+            link.classList.add(isScrolled ? 'text-slate-900' : 'text-white');
+            
+            // Show underline indicator if not already present
+            let span = link.querySelector('span');
+            if (!span) {
+              span = document.createElement('span');
+              link.appendChild(span);
+            }
+            span.className = `absolute bottom-0 left-0 right-0 h-[2px] rounded-full ${isScrolled ? 'bg-slate-900' : 'bg-white'}`;
+          } else {
+            link.classList.remove('active', 'text-slate-900', 'text-white');
+            link.classList.add(isScrolled ? 'text-slate-500' : 'text-white/80');
+            
+            const span = link.querySelector('span');
+            if (span) span.remove();
+          }
+        }
+      }
+    });
+  }
+
+  window.addEventListener('scroll', () => {
+    handleScroll();
+    highlightNav();
+  });
+  
+  // Run on mount
+  handleScroll();
+  highlightNav();
+</script>
